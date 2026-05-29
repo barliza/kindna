@@ -1,0 +1,100 @@
+import { Feature } from "./types";
+
+export const FEATURES: Feature[] = [
+  {
+    id: "face", label: "Face Shape", icon: "🧑",
+    desc: "Overall facial structure & contour",
+    tip: "Front-facing, neutral expression",
+    category: "head",
+    criteria: "Score each independently: (1) face_outline: oval/round/square/heart shape match, (2) face_width_to_height: proportion ratio similarity, (3) cheekbone_prominence: high vs flat cheekbones, (4) facial_symmetry: similar symmetry patterns",
+  },
+  {
+    id: "eyes", label: "Eyes", icon: "👁️",
+    desc: "Shape, spacing, color & brow line",
+    tip: "Close-up, eyes open, good lighting",
+    category: "head",
+    criteria: "Score each independently: (1) eye_shape: almond/round/hooded/monolid match, (2) eye_spacing: close-set vs wide-set, (3) eye_color: iris color similarity, (4) brow_arch: brow shape and position",
+  },
+  {
+    id: "nose", label: "Nose", icon: "👃",
+    desc: "Bridge, tip, nostrils & width",
+    tip: "Front or slight angle, clear shot",
+    category: "head",
+    criteria: "Score each independently: (1) bridge_width: narrow vs wide bridge, (2) nose_tip: pointed/bulbous/upturned shape, (3) nostril_shape: flare and size, (4) nose_length: proportional length",
+  },
+  {
+    id: "ears", label: "Ears", icon: "👂",
+    desc: "Shape, size, lobe & cartilage",
+    tip: "Side view, hair pulled back",
+    category: "head",
+    criteria: "Score each independently: (1) ear_size: overall proportion, (2) lobe_type: attached vs detached, (3) ear_shape: pointed/round/oval outline, (4) cartilage_folds: helix and antihelix pattern",
+  },
+  {
+    id: "smile", label: "Smile & Lips", icon: "😁",
+    desc: "Lip shape, smile line & teeth",
+    tip: "Smiling naturally, teeth showing",
+    category: "head",
+    criteria: "Score each independently: (1) lip_thickness: thin/medium/full match, (2) lip_shape: cupid's bow prominence, (3) smile_width: narrow vs wide smile, (4) tooth_visibility: how much teeth show",
+  },
+  {
+    id: "chin", label: "Chin & Jaw", icon: "🗿",
+    desc: "Jawline definition & chin shape",
+    tip: "Slight angle or profile view",
+    category: "head",
+    criteria: "Score each independently: (1) jaw_angle: sharp vs soft jawline, (2) chin_shape: pointed/square/round, (3) chin_projection: recessed vs prominent, (4) jaw_width: narrow vs wide",
+  },
+  {
+    id: "forehead", label: "Forehead", icon: "🧠",
+    desc: "Height, width & hairline shape",
+    tip: "Hair pulled back, front view",
+    category: "head",
+    criteria: "Score each independently: (1) forehead_height: low vs high, (2) forehead_width: narrow vs broad, (3) hairline_shape: straight/widow's peak/rounded, (4) forehead_curvature: flat vs rounded",
+  },
+  {
+    id: "hands", label: "Hands & Fingers", icon: "🤲",
+    desc: "Palm lines, finger length & shape",
+    tip: "Open palm, fingers spread, flat surface",
+    category: "body",
+    criteria: "Score each independently: (1) finger_length: short/medium/long proportions, (2) finger_width: slim vs thick fingers, (3) nail_shape: round/square/oval, (4) palm_proportion: palm size relative to fingers",
+  },
+  {
+    id: "feet", label: "Feet & Toes", icon: "🦶",
+    desc: "Toe shape, length & arch",
+    tip: "Top-down view, toes visible",
+    category: "body",
+    criteria: "Score each independently: (1) toe_length_pattern: Egyptian/Greek/Roman foot type, (2) toe_width: slim vs wide toes, (3) foot_width: narrow/medium/wide, (4) arch_height: flat/normal/high",
+  },
+  {
+    id: "skin", label: "Skin Tone", icon: "🎨",
+    desc: "Complexion, tone & texture",
+    tip: "Natural light, no filters",
+    category: "body",
+    criteria: "Score each independently: (1) skin_depth: light/medium/deep tone match, (2) undertone: warm/cool/neutral match, (3) skin_texture: smooth/textured similarity, (4) evenness: similar evenness of complexion",
+  },
+  {
+    id: "hair", label: "Hair", icon: "💇",
+    desc: "Texture, pattern, color & density",
+    tip: "Natural state, good lighting",
+    category: "head",
+    criteria: "Score each independently: (1) hair_texture: straight/wavy/curly/coily match, (2) hair_color: shade similarity, (3) hair_density: thin/medium/thick, (4) hair_pattern: growth direction and pattern",
+  },
+  {
+    id: "bodyshape", label: "Body Build", icon: "🧍",
+    desc: "Frame, proportions & posture",
+    tip: "Full body, standing straight",
+    category: "body",
+    criteria: "Score each independently: (1) frame_size: ectomorph/mesomorph/endomorph match, (2) shoulder_width: narrow/medium/broad, (3) torso_length: short/average/long proportions, (4) limb_proportion: arm and leg length relative to body",
+  },
+];
+
+export const RELATIONSHIPS = [
+  "Parent & Child",
+  "Siblings",
+  "Grandparent & Grandchild",
+  "Cousins",
+  "Uncle/Aunt & Nephew/Niece",
+  "Twins",
+  "Friends",
+  "Partners",
+  "Other",
+];
