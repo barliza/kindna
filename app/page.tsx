@@ -39,12 +39,15 @@ export default function LandingPage() {
             KinDNA
           </span>
         </div>
-        <Link
-          href="/scan"
-          className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm tracking-wide shadow-lg shadow-[#D4A853]/20 hover:shadow-[#D4A853]/40 transition-shadow"
-        >
-          Start Scanning
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link href="/blog" className="text-sm text-[#6B7B8D] hover:text-[#D4A853] transition-colors">Blog</Link>
+          <Link
+            href="/scan"
+            className="px-6 py-2.5 rounded-full bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm tracking-wide shadow-lg shadow-[#D4A853]/20 hover:shadow-[#D4A853]/40 transition-shadow"
+          >
+            Start Scanning
+          </Link>
+        </div>
       </nav>
 
       {/* Hero */}
