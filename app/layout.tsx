@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     title: "KinDNA — Family DNA Scanner",
     description: "Scan. Compare. See your DNA connection.",
   },
+  verification: {
+    google: "utsHYzQrEbgCXI3_CWTL0kL4dh67-efxnhinzrdVPC0",
+  },
 };
 
 export default function RootLayout({
