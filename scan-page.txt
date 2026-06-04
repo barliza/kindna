@@ -1,12 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef, useEffect } from "react";
-import { createPortal } from "react-dom";
 import Link from "next/link";
 import { FEATURES, RELATIONSHIPS } from "@/lib/features";
 import { FeaturePhotos, AnalysisResults, AnalyzeResponse } from "@/lib/types";
 
-// Free features – always unlocked
+// Free features â€” always unlocked
 const FREE_FEATURES = ["face", "eyes"];
 
 function compressImage(file: File): Promise<string> {
@@ -61,7 +60,7 @@ function PhotoCapture({ label, photo, onUpload, onRemove, tip, accent = "#D4A853
   if (photo) return (
     <div className="flex-1 min-w-[130px] relative rounded-2xl overflow-hidden aspect-square" style={{ border: `2px solid ${accent}` }}>
       <img src={photo} alt={label} className="w-full h-full object-cover" />
-      <button onClick={onRemove} className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-black/70 text-white text-sm flex items-center justify-center">✕</button>
+      <button onClick={onRemove} className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-black/70 text-white text-sm flex items-center justify-center">âœ•</button>
       <div className="absolute bottom-0 left-0 right-0 py-1 px-2 bg-gradient-to-t from-black/70 text-center">
         <p className="text-[10px] text-gray-300">{label}</p>
       </div>
@@ -70,7 +69,7 @@ function PhotoCapture({ label, photo, onUpload, onRemove, tip, accent = "#D4A853
   return (
     <div onClick={() => inputRef.current?.click()}
       className="flex-1 min-w-[130px] aspect-square rounded-2xl cursor-pointer border-2 border-dashed border-white/10 bg-white/[0.02] flex flex-col items-center justify-center gap-2 hover:border-[#D4A853]/30 transition-colors">
-      <div className="w-11 h-11 rounded-full flex items-center justify-center text-xl" style={{ background: accent + "15", border: `1px solid ${accent}30` }}>📷</div>
+      <div className="w-11 h-11 rounded-full flex items-center justify-center text-xl" style={{ background: accent + "15", border: `1px solid ${accent}30` }}>ðŸ“·</div>
       <p className="text-xs font-semibold text-[#C8D1DA]">{label}</p>
       {tip && <p className="text-[10px] text-[#6B7B8D] text-center px-2">{tip}</p>}
       <input ref={inputRef} type="file" accept="image/*" capture="environment" className="hidden"
@@ -127,39 +126,22 @@ function FeatureBar({ icon, label, score, delay = 0 }: { icon: string; label: st
   );
 }
 
-// ─── PAYWALL MODAL (fixed with portal to prevent duplication) ───
+// â”€â”€â”€ PAYWALL MODAL â”€â”€â”€
 function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: string; nameB: string }) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-    // Prevent background scroll when modal is open
-    document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = ""; };
-  }, []);
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 backdrop-blur-sm" onClick={onClose}>
+      <div className="w-full max-w-[440px] bg-[#131920] rounded-t-3xl p-6 border-t border-white/10"
+        onClick={(e) => e.stopPropagation()}>
 
-  if (!mounted) return null;
-
-  return createPortal(
-    <div
-      className="fixed inset-0 flex items-end justify-center bg-black/70 backdrop-blur-sm"
-      style={{ zIndex: 9999 }}
-      onClick={onClose}
-    >
-      <div
-        className="w-full max-w-[440px] bg-[#131920] rounded-t-3xl p-6 border-t border-white/10 max-h-[90vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-      >
         {/* Handle */}
         <div className="w-10 h-1 bg-white/20 rounded-full mx-auto mb-5" />
 
         {/* Lock icon */}
         <div className="text-center mb-4">
-          <div className="w-16 h-16 rounded-2xl bg-[#D4A853]/10 border border-[#D4A853]/20 flex items-center justify-center text-3xl mx-auto mb-3">🔐</div>
+          <div className="w-16 h-16 rounded-2xl bg-[#D4A853]/10 border border-[#D4A853]/20 flex items-center justify-center text-3xl mx-auto mb-3">ðŸ”</div>
           <h2 className="font-display text-xl font-bold text-white mb-1">Unlock Full DNA Report</h2>
           <p className="text-sm text-[#6B7B8D] leading-relaxed">
-            You've seen Face Shape & Eyes. Unlock all 10 remaining features to see the complete DNA picture between{" "}
-            <span className="text-[#D4A853]">{nameA || "Person A"}</span> and{" "}
-            <span className="text-[#53A8D4]">{nameB || "Person B"}</span>.
+            You've seen Face Shape & Eyes. Unlock all 10 remaining features to see the complete DNA picture between <span className="text-[#D4A853]">{nameA || "Person A"}</span> and <span className="text-[#53A8D4]">{nameB || "Person B"}</span>.
           </p>
         </div>
 
@@ -167,9 +149,9 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
         <div className="bg-white/[0.03] rounded-2xl p-4 mb-4 border border-white/[0.06]">
           <p className="text-xs font-bold text-[#6B7B8D] tracking-widest uppercase mb-3">What you unlock</p>
           <div className="grid grid-cols-2 gap-1.5">
-            {["👃 Nose", "👂 Ears", "😁 Smile & Lips", "🗿 Chin & Jaw", "🧠 Forehead", "💇 Hair", "🤲 Hands", "🦶 Feet", "🎨 Skin Tone", "🧍 Body Build"].map(f => (
+            {["ðŸ‘ƒ Nose", "ðŸ‘‚ Ears", "ðŸ˜ Smile & Lips", "ðŸ—¿ Chin & Jaw", "ðŸ§  Forehead", "ðŸ’‡ Hair", "ðŸ¤² Hands", "ðŸ¦¶ Feet", "ðŸŽ¨ Skin Tone", "ðŸ§ Body Build"].map(f => (
               <div key={f} className="flex items-center gap-1.5 text-xs text-[#C8D1DA]">
-                <span className="text-[#4ADE80]">✓</span> {f}
+                <span className="text-[#4ADE80]">âœ“</span> {f}
               </div>
             ))}
           </div>
@@ -190,7 +172,7 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
 
         {/* Coming soon note */}
         <div className="bg-[#D4A853]/[0.08] border border-[#D4A853]/20 rounded-xl p-3 mb-4 text-center">
-          <p className="text-xs text-[#E8C97A]">💳 Payments launching soon — join the waitlist to get notified and receive <strong>3 free premium scans</strong></p>
+          <p className="text-xs text-[#E8C97A]">ðŸ’³ Payments launching soon â€” join the waitlist to get notified and receive <strong>3 free premium scans</strong></p>
         </div>
 
         {/* Email input for waitlist */}
@@ -206,14 +188,13 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
           Continue with free results
         </button>
       </div>
-    </div>,
-    document.body
+    </div>
   );
 }
 
-// ═══════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 // MAIN SCANNER APP
-// ═══════════════════════════════════════════
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
 export default function ScanPage() {
   const [step, setStep] = useState(0);
   const [nameA, setNameA] = useState("");
@@ -227,7 +208,7 @@ export default function ScanPage() {
   const [progress, setProgress] = useState({ current: 0, total: 0 });
   const [errorMsg, setErrorMsg] = useState("");
   const [showPaywall, setShowPaywall] = useState(false);
-  const [isPremium, setIsPremium] = useState(false);
+  const [isPremium, setIsPremium] = useState(false); // Will connect to Stripe later
 
   const currentFeature = FEATURES.find((f) => f.id === selectedFeatures[scanIndex]);
   const currentPhotos = featurePhotos[selectedFeatures[scanIndex]] || { a: null, b: null };
@@ -246,7 +227,6 @@ export default function ScanPage() {
 
   const analyzeAll = async () => {
     setStep(4);
-    // Analyze ALL features — but only show details for free ones
     const toAnalyze = selectedFeatures.filter((id) => featurePhotos[id]?.a && featurePhotos[id]?.b);
     const total = toAnalyze.length;
     const featureResults: AnalysisResults["features"] = {};
@@ -285,11 +265,11 @@ export default function ScanPage() {
 
     const overall = Math.round(validScores.reduce((s, v) => s + v, 0) / validScores.length);
     let verdict = "";
-    if (overall >= 80) verdict = `Remarkably strong resemblance — a striking DNA connection across all ${validScores.length} features.`;
-    else if (overall >= 60) verdict = `Clear family DNA detected. Unlock premium to see the full breakdown of all ${validScores.length} features.`;
-    else if (overall >= 45) verdict = `Moderate DNA similarity detected across ${validScores.length} features. Unlock to see what's hidden.`;
-    else if (overall >= 30) verdict = `Some subtle shared DNA markers found. Unlock premium to see the complete picture.`;
-    else verdict = `Quite different across most features. Unlock premium to see the full ${validScores.length}-feature analysis.`;
+    if (overall >= 80) verdict = `Remarkably strong resemblance across ${validScores.length} features â€” a striking DNA connection.`;
+    else if (overall >= 60) verdict = `Clear family DNA detected, with some notably strong feature matches.`;
+    else if (overall >= 45) verdict = `Moderate DNA similarity with shared traits visible in the highest-scoring features.`;
+    else if (overall >= 30) verdict = `Some subtle shared DNA markers, with natural differences across most features.`;
+    else verdict = `Quite different across most features, with minimal visual DNA overlap detected.`;
 
     setResults({ overall_score: overall, verdict, features: featureResults, errors: errors.length > 0 ? errors : null, analyzed_count: validScores.length });
     setStep(5);
@@ -307,10 +287,7 @@ export default function ScanPage() {
 
   return (
     <div className="min-h-screen bg-[#0D1117]">
-      {/* Modal renders via portal — no duplication possible */}
-      {showPaywall && (
-        <PaywallModal onClose={() => setShowPaywall(false)} nameA={nameA} nameB={nameB} />
-      )}
+      {showPaywall && <PaywallModal onClose={() => setShowPaywall(false)} nameA={nameA} nameB={nameB} />}
 
       <div className="max-w-[440px] mx-auto px-5 pb-10">
 
@@ -356,7 +333,7 @@ export default function ScanPage() {
                   }`}>{r}</button>
               ))}
             </div>
-            <button onClick={() => setStep(1)} className={btnPrimary}>Next: Choose Features →</button>
+            <button onClick={() => setStep(1)} className={btnPrimary}>Next: Choose Features â†’</button>
           </div>
         )}
 
@@ -364,12 +341,12 @@ export default function ScanPage() {
         {step === 1 && (
           <div className="pt-6 animate-fade-in">
             <h2 className="font-display text-[22px] font-bold mb-1">What to Scan?</h2>
-            <p className="text-sm text-[#6B7B8D] mb-4">Free: Face Shape & Eyes · Premium: All 12 features</p>
+            <p className="text-sm text-[#6B7B8D] mb-4">Free: Face Shape & Eyes Â· Premium: All 12 features</p>
 
             {(["head", "body"] as const).map((cat) => (
               <div key={cat} className="mb-4">
                 <p className="text-[11px] font-bold text-[#6B7B8D] tracking-widest uppercase mb-2">
-                  {cat === "head" ? "🧑 Head & Face" : "🧍 Body"}
+                  {cat === "head" ? "ðŸ§‘ Head & Face" : "ðŸ§ Body"}
                 </p>
                 <div className="grid grid-cols-2 gap-2">
                   {FEATURES.filter((f) => f.category === cat).map((f) => {
@@ -389,8 +366,8 @@ export default function ScanPage() {
                           <p className={`text-[13px] font-semibold truncate ${isSelected && !isLockedFeature(f.id) ? "text-[#D4A853]" : "text-[#C8D1DA]"}`}>{f.label}</p>
                           <p className="text-[10px] text-[#6B7B8D] truncate">{f.desc}</p>
                         </div>
-                        {isLockedFeature(f.id) && <span className="text-[10px]">🔒</span>}
-                        {!isLockedFeature(f.id) && isSelected && <span className="text-[#D4A853] text-sm font-bold flex-shrink-0">✓</span>}
+                        {isLockedFeature(f.id) && <span className="text-[10px]">ðŸ”’</span>}
+                        {!isLockedFeature(f.id) && isSelected && <span className="text-[#D4A853] text-sm font-bold flex-shrink-0">âœ“</span>}
                         {isFree && <span className="absolute top-1 right-1 text-[9px] bg-[#4ADE80]/15 text-[#4ADE80] px-1.5 py-0.5 rounded-full font-bold">FREE</span>}
                       </button>
                     );
@@ -402,19 +379,19 @@ export default function ScanPage() {
             {/* Premium unlock teaser */}
             <div onClick={() => setShowPaywall(true)}
               className="flex items-center gap-3 p-3.5 rounded-xl border border-[#D4A853]/20 bg-[#D4A853]/[0.05] cursor-pointer mb-4 hover:bg-[#D4A853]/10 transition-colors">
-              <span className="text-2xl">🔐</span>
+              <span className="text-2xl">ðŸ”</span>
               <div className="flex-1">
                 <p className="text-sm font-bold text-[#D4A853]">Unlock All 12 Features</p>
-                <p className="text-xs text-[#6B7B8D]">From $2.99 — Full body DNA report</p>
+                <p className="text-xs text-[#6B7B8D]">From $2.99 â€” Full body DNA report</p>
               </div>
-              <span className="text-[#D4A853]">→</span>
+              <span className="text-[#D4A853]">â†’</span>
             </div>
 
             <div className="flex gap-3">
-              <button onClick={() => setStep(0)} className={`${btnSecondary} !w-auto !px-5`}>←</button>
+              <button onClick={() => setStep(0)} className={`${btnSecondary} !w-auto !px-5`}>â†</button>
               <button onClick={() => { setScanIndex(0); setStep(2); }} disabled={selectedFeatures.length === 0}
                 className={`${btnPrimary} flex-1 ${selectedFeatures.length === 0 ? "opacity-35 cursor-not-allowed" : ""}`}>
-                Start Scanning ({selectedFeatures.filter(id => !isLockedFeature(id)).length}) →
+                Start Scanning ({selectedFeatures.filter(id => !isLockedFeature(id)).length}) â†’
               </button>
             </div>
           </div>
@@ -436,7 +413,7 @@ export default function ScanPage() {
               <p className="text-[13px] text-[#6B7B8D]">{currentFeature.desc}</p>
             </div>
             <div className="flex items-center gap-2.5 bg-[#D4A853]/[0.08] border border-[#D4A853]/15 rounded-lg px-3.5 py-2.5 mb-5">
-              <span className="text-base">💡</span>
+              <span className="text-base">ðŸ’¡</span>
               <p className="text-xs text-[#E8C97A]">Tip: {currentFeature.tip}</p>
             </div>
             <div className="flex gap-3.5 mb-6">
@@ -448,16 +425,16 @@ export default function ScanPage() {
                 tip={!currentPhotos.b ? currentFeature.label : null} accent="#53A8D4" />
             </div>
             <div className="flex gap-2.5">
-              <button onClick={() => scanIndex > 0 ? setScanIndex(scanIndex - 1) : setStep(1)} className={`${btnSecondary} !w-auto !px-5`}>←</button>
+              <button onClick={() => scanIndex > 0 ? setScanIndex(scanIndex - 1) : setStep(1)} className={`${btnSecondary} !w-auto !px-5`}>â†</button>
               {scanIndex < selectedFeatures.length - 1 ? (
                 <button onClick={() => setScanIndex(scanIndex + 1)} disabled={!canAdvance}
                   className={`${btnPrimary} flex-1 ${!canAdvance ? "opacity-35 cursor-not-allowed" : ""}`}>
-                  Next: {FEATURES.find((f) => f.id === selectedFeatures[scanIndex + 1])?.label} →
+                  Next: {FEATURES.find((f) => f.id === selectedFeatures[scanIndex + 1])?.label} â†’
                 </button>
               ) : (
                 <button onClick={() => setStep(3)} disabled={!canAdvance}
                   className={`${btnPrimary} flex-1 ${!canAdvance ? "opacity-35 cursor-not-allowed" : ""}`}>
-                  Review All Scans →
+                  Review All Scans â†’
                 </button>
               )}
             </div>
@@ -485,7 +462,7 @@ export default function ScanPage() {
                     <span className="text-xl">{f.icon}</span>
                     <div className="flex-1">
                       <p className={`text-sm font-semibold ${ready ? "text-[#4ADE80]" : "text-[#6B7B8D]"}`}>{f.label}</p>
-                      <p className="text-[11px] text-[#6B7B8D]">{ready ? "✓ Both photos ready" : "Tap to scan"}</p>
+                      <p className="text-[11px] text-[#6B7B8D]">{ready ? "âœ“ Both photos ready" : "Tap to scan"}</p>
                     </div>
                     {ready && photos.a && photos.b && (
                       <div className="flex gap-1">
@@ -493,16 +470,16 @@ export default function ScanPage() {
                         <img src={photos.b} className="w-8 h-8 rounded-lg object-cover border border-[#53A8D4]" />
                       </div>
                     )}
-                    {!ready && <span className="text-[#6B7B8D]">→</span>}
+                    {!ready && <span className="text-[#6B7B8D]">â†’</span>}
                   </div>
                 );
               })}
             </div>
             <div className="flex gap-3">
-              <button onClick={() => { setScanIndex(selectedFeatures.length - 1); setStep(2); }} className={`${btnSecondary} !w-auto !px-5`}>←</button>
+              <button onClick={() => { setScanIndex(selectedFeatures.length - 1); setStep(2); }} className={`${btnSecondary} !w-auto !px-5`}>â†</button>
               <button onClick={analyzeAll} disabled={scannedCount === 0}
                 className={`${btnPrimary} flex-1 ${scannedCount === 0 ? "opacity-35 cursor-not-allowed" : ""}`}>
-                🧬 Analyze {scannedCount} Feature{scannedCount !== 1 ? "s" : ""}
+                ðŸ§¬ Analyze {scannedCount} Feature{scannedCount !== 1 ? "s" : ""}
               </button>
             </div>
           </div>
@@ -527,7 +504,7 @@ export default function ScanPage() {
             <div className="text-center mb-7">
               <p className="text-xs text-[#D4A853] font-semibold tracking-widest uppercase mb-1.5">DNA Resemblance Report</p>
               <span className="inline-block text-[10px] font-semibold px-2.5 py-1 rounded-full bg-[#4ADE80]/10 text-[#4ADE80] border border-[#4ADE80]/20 mb-4">
-                ✓ {results.analyzed_count} FEATURES ANALYZED
+                âœ“ {results.analyzed_count} FEATURES ANALYZED
               </span>
               <div className="flex items-center justify-center gap-4 mb-5">
                 <p className="text-sm font-semibold text-[#D4A853]">{nameA || "Person A"}</p>
@@ -538,7 +515,7 @@ export default function ScanPage() {
               <p className="text-[15px] text-[#C8D1DA] mt-4 leading-relaxed max-w-[320px] mx-auto">{results.verdict}</p>
             </div>
 
-            {/* Feature scores */}
+            {/* FREE feature scores */}
             <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-5 mb-4">
               <h3 className="text-[13px] font-bold text-[#B8C4D0] tracking-widest uppercase mb-2">Feature Scores</h3>
               {selectedFeatures.map((id, i) => {
@@ -546,6 +523,7 @@ export default function ScanPage() {
                 const score = results.features?.[id]?.score;
                 if (score === null || score === undefined) return null;
 
+                // Show free features normally, locked features blurred
                 if (isLockedFeature(id)) return (
                   <div key={id} className="flex items-center gap-3 py-2.5 relative">
                     <span className="text-xl w-7 text-center opacity-30">{f.icon}</span>
@@ -558,7 +536,7 @@ export default function ScanPage() {
                         <div className="h-full rounded-full bg-[#D4A853]" style={{ width: "60%" }} />
                       </div>
                     </div>
-                    <span className="text-base">🔒</span>
+                    <span className="text-base">ðŸ”’</span>
                   </div>
                 );
 
@@ -566,15 +544,15 @@ export default function ScanPage() {
               })}
             </div>
 
-            {/* Paywall CTA — only ONE button, no modal inline */}
+            {/* Paywall CTA if any locked features exist */}
             {selectedFeatures.some(id => isLockedFeature(id)) && (
               <button onClick={() => setShowPaywall(true)}
                 className="w-full py-4 rounded-2xl border border-[#D4A853]/30 bg-[#D4A853]/[0.08] text-[#D4A853] font-bold text-sm mb-4 hover:bg-[#D4A853]/15 transition-colors">
-                🔐 Unlock {selectedFeatures.filter(id => isLockedFeature(id)).length} Hidden Scores — From $2.99
+                ðŸ” Unlock {selectedFeatures.filter(id => isLockedFeature(id)).length} Hidden Scores â€” From $2.99
               </button>
             )}
 
-            {/* Detailed comparison */}
+            {/* Free detailed comparison */}
             <div className="bg-white/[0.02] border border-white/[0.05] rounded-2xl p-5 mb-4">
               <h3 className="text-[13px] font-bold text-[#B8C4D0] tracking-widest uppercase mb-3">Detailed Comparison</h3>
               {selectedFeatures.map((id) => {
@@ -588,12 +566,12 @@ export default function ScanPage() {
                     <div className="blur-sm opacity-30 pointer-events-none">
                       <div className="flex items-center gap-2.5 mb-2">
                         <span className="text-lg">{f.icon}</span>
-                        <span className="text-sm font-bold text-[#D4A853]">{f.label} — ??%</span>
+                        <span className="text-sm font-bold text-[#D4A853]">{f.label} â€” ??%</span>
                       </div>
                       <p className="text-[13px] text-[#9BA8B6]">Premium analysis hidden. Unlock to see detailed comparison notes.</p>
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-2xl">🔒</span>
+                      <span className="text-2xl">ðŸ”’</span>
                     </div>
                   </div>
                 );
@@ -603,7 +581,7 @@ export default function ScanPage() {
                   <div key={id} className="py-3.5 border-b border-white/[0.04] last:border-b-0">
                     <div className="flex items-center gap-2.5 mb-2">
                       <span className="text-lg">{f.icon}</span>
-                      <span className="text-sm font-bold" style={{ color }}>{f.label} — {r.score}%</span>
+                      <span className="text-sm font-bold" style={{ color }}>{f.label} â€” {r.score}%</span>
                     </div>
                     {photos?.a && photos?.b && (
                       <div className="flex gap-2 mb-2">
@@ -624,24 +602,24 @@ export default function ScanPage() {
             {/* Disclaimer */}
             <div className="bg-white/[0.02] border border-white/[0.04] rounded-xl p-3.5 mb-6">
               <p className="text-[11px] text-[#4A5568] leading-relaxed">
-                🔒 KinDNA is for entertainment only. Not genetic, medical, or legal evidence.
+                ðŸ”’ KinDNA is for entertainment only. Not genetic, medical, or legal evidence.
               </p>
             </div>
 
-            <button onClick={reset} className={btnPrimary}>🔄 New Comparison</button>
+            <button onClick={reset} className={btnPrimary}>ðŸ”„ New Comparison</button>
           </div>
         )}
 
         {/* STEP 6: ERROR */}
         {step === 6 && (
           <div className="pt-16 text-center animate-fade-in">
-            <div className="w-[70px] h-[70px] rounded-full mx-auto mb-5 bg-red-500/10 border-2 border-red-500/30 flex items-center justify-center text-3xl">⚠️</div>
+            <div className="w-[70px] h-[70px] rounded-full mx-auto mb-5 bg-red-500/10 border-2 border-red-500/30 flex items-center justify-center text-3xl">âš ï¸</div>
             <h2 className="font-display text-xl font-bold mb-3">Analysis Failed</h2>
             <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-3.5 mb-6 text-left max-h-[180px] overflow-y-auto">
               <p className="text-[11px] text-red-400 font-mono whitespace-pre-wrap break-all leading-relaxed">{errorMsg}</p>
             </div>
-            <button onClick={() => { setErrorMsg(""); analyzeAll(); }} className={btnPrimary}>🔄 Try Again</button>
-            <button onClick={() => { setErrorMsg(""); setStep(3); }} className={`${btnSecondary} mt-3`}>← Back to Review</button>
+            <button onClick={() => { setErrorMsg(""); analyzeAll(); }} className={btnPrimary}>ðŸ”„ Try Again</button>
+            <button onClick={() => { setErrorMsg(""); setStep(3); }} className={`${btnSecondary} mt-3`}>â† Back to Review</button>
           </div>
         )}
       </div>
