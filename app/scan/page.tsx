@@ -177,11 +177,27 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
 
         {/* Pricing */}
         <div className="flex gap-3 mb-4">
-          <button className="flex-1 py-4 rounded-2xl border-2 border-[#D4A853] bg-gradient-to-b from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm">
+          <button onClick={async () => {
+            const res = await fetch("/api/create-checkout", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ plan: "one_time" }),
+            });
+            const data = await res.json();
+            if (data.url) window.location.href = data.url;
+          }} className="flex-1 py-4 rounded-2xl border-2 border-[#D4A853] bg-gradient-to-b from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm">
             <p className="text-lg font-extrabold">$2.99</p>
             <p className="text-xs opacity-70">One-time report</p>
           </button>
-          <button className="flex-1 py-4 rounded-2xl border-2 border-[#53A8D4]/50 bg-[#53A8D4]/10 text-white font-bold text-sm relative">
+          <button onClick={async () => {
+            const res = await fetch("/api/create-checkout", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ plan: "monthly" }),
+            });
+            const data = await res.json();
+            if (data.url) window.location.href = data.url;
+          }} className="flex-1 py-4 rounded-2xl border-2 border-[#53A8D4]/50 bg-[#53A8D4]/10 text-white font-bold text-sm relative">
             <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#53A8D4] text-[#0D1117] text-[10px] font-bold px-2 py-0.5 rounded-full">BEST VALUE</span>
             <p className="text-lg font-extrabold text-[#53A8D4]">$4.99</p>
             <p className="text-xs opacity-70">Monthly unlimited</p>
@@ -227,7 +243,12 @@ export default function ScanPage() {
   const [progress, setProgress] = useState({ current: 0, total: 0 });
   const [errorMsg, setErrorMsg] = useState("");
   const [showPaywall, setShowPaywall] = useState(false);
-  const [isPremium, setIsPremium] = useState(false);
+  const [isPremium, setIsPremium] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("kindna_premium") === "true";
+    }
+    return false;
+  });
 
   const currentFeature = FEATURES.find((f) => f.id === selectedFeatures[scanIndex]);
   const currentPhotos = featurePhotos[selectedFeatures[scanIndex]] || { a: null, b: null };
