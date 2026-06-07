@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 
 function HelixIcon({ size = 24 }: { size?: number }) {
@@ -5,26 +6,24 @@ function HelixIcon({ size = 24 }: { size?: number }) {
     <svg width={size} height={size} viewBox="0 0 40 40" fill="none">
       <path d="M20 4C14 4 10 10 10 16C10 22 14 24 20 24C26 24 30 26 30 32C30 36 26 38 20 38" stroke="#D4A853" strokeWidth="2.5" strokeLinecap="round" />
       <path d="M20 4C26 4 30 10 30 16C30 22 26 24 20 24C14 24 10 26 10 32C10 36 14 38 20 38" stroke="#D4A853" strokeWidth="2.5" strokeLinecap="round" opacity="0.4" />
-      <circle cx="20" cy="4" r="2" fill="#D4A853" />
-      <circle cx="20" cy="24" r="2" fill="#D4A853" />
-      <circle cx="20" cy="38" r="2" fill="#D4A853" />
+      <circle cx="20" cy="4" r="2" fill="#D4A853" /><circle cx="20" cy="24" r="2" fill="#D4A853" /><circle cx="20" cy="38" r="2" fill="#D4A853" />
     </svg>
   );
 }
 
 const FEATURES_LIST = [
-  { icon: "🧑", label: "Face Shape", desc: "Oval, round, square — see if the structure matches" },
-  { icon: "👁️", label: "Eyes", desc: "Shape, spacing, color and brow arch comparison" },
-  { icon: "👃", label: "Nose", desc: "Bridge width, tip shape and nostril symmetry" },
-  { icon: "😁", label: "Smile & Lips", desc: "Lip fullness, smile width and tooth visibility" },
-  { icon: "🧠", label: "Forehead", desc: "Height, hairline shape and width analysis" },
-  { icon: "🗿", label: "Chin & Jaw", desc: "Jawline structure and chin projection" },
-  { icon: "👂", label: "Ears", desc: "Size, shape and attachment style" },
-  { icon: "💇", label: "Hair", desc: "Texture, growth pattern and hairline type" },
-  { icon: "🎨", label: "Skin Tone", desc: "Undertone and melanin distribution match" },
-  { icon: "🤲", label: "Hands", desc: "Finger length ratios and nail shape" },
-  { icon: "🦶", label: "Feet", desc: "Arch type, toe length and width" },
-  { icon: "🧍", label: "Body Build", desc: "Frame size and proportional structure" },
+  { img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face&auto=format", label: "Face Shape", desc: "Oval, round, square structure match" },
+  { img: "https://images.unsplash.com/photo-1509281373149-e957c6296406?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.35&auto=format", label: "Eyes", desc: "Shape, spacing, color and brow arch" },
+  { img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.45&auto=format", label: "Nose", desc: "Bridge width, tip shape and nostrils" },
+  { img: "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.65&auto=format", label: "Smile & Lips", desc: "Lip fullness and smile width" },
+  { img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.15&auto=format", label: "Forehead", desc: "Height, hairline and width" },
+  { img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.75&auto=format", label: "Chin & Jaw", desc: "Jawline structure and chin projection" },
+  { img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.15&fp-y=0.45&auto=format", label: "Ears", desc: "Size, shape and attachment style" },
+  { img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.1&auto=format", label: "Hair", desc: "Texture, growth pattern and hairline" },
+  { img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=80&h=80&fit=crop&auto=format", label: "Skin Tone", desc: "Undertone and melanin distribution" },
+  { img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=80&h=80&fit=crop&auto=format", label: "Hands", desc: "Finger length ratios and nail shape" },
+  { img: "https://images.unsplash.com/photo-1508387027939-27cccde53673?w=80&h=80&fit=crop&auto=format", label: "Feet", desc: "Arch type, toe length and width" },
+  { img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=80&h=80&fit=crop&auto=format", label: "Body Build", desc: "Frame size and proportional structure" },
 ];
 
 const HOW_IT_WORKS = [
@@ -63,15 +62,13 @@ export default function HomePage() {
           <a href="#features" className="hover:text-white transition-colors">Features</a>
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
         </div>
-        <Link href="/scan"
-          className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm">
+        <Link href="/scan" className="px-4 py-2 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm">
           Try Free →
         </Link>
       </nav>
 
       {/* ── HERO ── */}
       <section className="max-w-3xl mx-auto px-5 pt-16 pb-20 text-center">
-        {/* Badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#D4A853]/10 border border-[#D4A853]/20 text-[#D4A853] text-xs font-semibold mb-6">
           <span>🧬</span> AI-Powered Facial DNA Analysis
         </div>
@@ -88,12 +85,10 @@ export default function HomePage() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center mb-10">
-          <Link href="/scan"
-            className="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-[15px] shadow-lg shadow-[#D4A853]/20 hover:shadow-[#D4A853]/40 transition-shadow">
+          <Link href="/scan" className="px-8 py-4 rounded-2xl bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-[15px] shadow-lg shadow-[#D4A853]/20">
             🧬 Start Free Analysis
           </Link>
-          <a href="#how-it-works"
-            className="px-8 py-4 rounded-2xl bg-white/[0.06] text-[#C8D1DA] border border-white/10 font-semibold text-[15px] hover:bg-white/10 transition-colors">
+          <a href="#how-it-works" className="px-8 py-4 rounded-2xl bg-white/[0.06] text-[#C8D1DA] border border-white/10 font-semibold text-[15px]">
             See How It Works
           </a>
         </div>
@@ -112,7 +107,6 @@ export default function HomePage() {
               <p className="text-xs text-[#53A8D4] font-semibold">Baby</p>
             </div>
           </div>
-          {/* Score ring mockup */}
           <div className="relative w-28 h-28 mx-auto mb-3">
             <svg width="112" height="112" viewBox="0 0 112 112" style={{ transform: "rotate(-90deg)" }}>
               <circle cx="56" cy="56" r="48" stroke="rgba(255,255,255,0.06)" strokeWidth="8" fill="none" />
@@ -192,12 +186,15 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {FEATURES_LIST.map((f, i) => (
-              <div key={f.label}
-                className={`p-3.5 rounded-xl border transition-all ${i < 2 ? "border-[#D4A853]/30 bg-[#D4A853]/[0.05]" : "border-white/[0.06] bg-white/[0.02]"}`}>
-                <div className="flex items-center gap-2 mb-1.5">
-                  <span className="text-lg">{f.icon}</span>
-                  {i < 2 && <span className="text-[9px] bg-[#4ADE80]/15 text-[#4ADE80] px-1.5 py-0.5 rounded-full font-bold">FREE</span>}
-                  {i >= 2 && <span className="text-[9px] bg-[#D4A853]/15 text-[#D4A853] px-1.5 py-0.5 rounded-full font-bold">PREMIUM</span>}
+              <div key={f.label} className={`p-3.5 rounded-xl border transition-all ${i < 2 ? "border-[#D4A853]/30 bg-[#D4A853]/[0.05]" : "border-white/[0.06] bg-white/[0.02]"}`}>
+                <div className="flex items-center justify-between mb-2.5">
+                  <div className="w-10 h-10 rounded-lg overflow-hidden border border-white/10">
+                    <img src={f.img} alt={f.label} className="w-full h-full object-cover" />
+                  </div>
+                  {i < 2
+                    ? <span className="text-[9px] bg-[#4ADE80]/15 text-[#4ADE80] px-1.5 py-0.5 rounded-full font-bold">FREE</span>
+                    : <span className="text-[9px] bg-[#D4A853]/15 text-[#D4A853] px-1.5 py-0.5 rounded-full font-bold">PREMIUM</span>
+                  }
                 </div>
                 <p className="text-sm font-semibold text-[#C8D1DA] mb-0.5">{f.label}</p>
                 <p className="text-[11px] text-[#6B7B8D] leading-relaxed">{f.desc}</p>
@@ -213,7 +210,6 @@ export default function HomePage() {
         <h2 className="font-display text-3xl font-bold mb-3">Simple, Honest Pricing</h2>
         <p className="text-[#6B7B8D] text-sm mb-10">Start free. Pay only when you want the full picture.</p>
         <div className="grid md:grid-cols-3 gap-4">
-          {/* Free */}
           <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 text-left">
             <p className="text-xs font-bold text-[#6B7B8D] tracking-widest uppercase mb-3">Free</p>
             <p className="text-3xl font-extrabold text-white mb-1">$0</p>
@@ -228,7 +224,6 @@ export default function HomePage() {
               Start Free
             </Link>
           </div>
-          {/* One-time */}
           <div className="bg-[#D4A853]/[0.08] border border-[#D4A853]/30 rounded-2xl p-6 text-left">
             <p className="text-xs font-bold text-[#D4A853] tracking-widest uppercase mb-3">One-Time Report</p>
             <p className="text-3xl font-extrabold text-white mb-1">$2.99</p>
@@ -243,7 +238,6 @@ export default function HomePage() {
               Get Full Report
             </Link>
           </div>
-          {/* Monthly */}
           <div className="bg-[#53A8D4]/[0.08] border border-[#53A8D4]/30 rounded-2xl p-6 text-left relative">
             <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#53A8D4] text-[#0D1117] text-[10px] font-bold px-3 py-1 rounded-full">BEST VALUE</span>
             <p className="text-xs font-bold text-[#53A8D4] tracking-widest uppercase mb-3">Unlimited</p>
@@ -285,8 +279,7 @@ export default function HomePage() {
         <HelixIcon size={48} />
         <h2 className="font-display text-3xl font-bold mt-4 mb-3">Ready to See the Match?</h2>
         <p className="text-[#6B7B8D] mb-8">Upload your photos and get your DNA resemblance report in under 60 seconds.</p>
-        <Link href="/scan"
-          className="inline-block px-10 py-4 rounded-2xl bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-[15px] shadow-lg shadow-[#D4A853]/20">
+        <Link href="/scan" className="inline-block px-10 py-4 rounded-2xl bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-[15px] shadow-lg shadow-[#D4A853]/20">
           🧬 Start Free Analysis
         </Link>
         <p className="text-xs text-[#4A5568] mt-4">No account required · Photos never stored · Results in seconds</p>
