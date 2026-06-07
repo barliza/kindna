@@ -250,13 +250,6 @@ export default function ScanPage() {
     return false;
   });
 
-  // Only scan features the user has access to
-  const scanableFeatures = selectedFeatures.filter((id) => !isLockedFeature(id));
-  const currentFeature = FEATURES.find((f) => f.id === scanableFeatures[scanIndex]);
-  const currentPhotos = featurePhotos[scanableFeatures[scanIndex]] || { a: null, b: null };
-  const canAdvance = currentPhotos.a && currentPhotos.b;
-  const scannedCount = scanableFeatures.filter((id) => featurePhotos[id]?.a && featurePhotos[id]?.b).length;
-
   const setPhoto = (fId: string, person: "a" | "b", data: string) =>
     setFeaturePhotos((prev) => ({ ...prev, [fId]: { ...prev[fId], [person]: data } }));
   const removePhoto = (fId: string, person: "a" | "b") =>
@@ -266,6 +259,13 @@ export default function ScanPage() {
 
   const isFreeFeature = (id: string) => FREE_FEATURES.includes(id);
   const isLockedFeature = (id: string) => !isFreeFeature(id) && !isPremium;
+
+  // Only scan features the user has access to
+  const scanableFeatures = selectedFeatures.filter((id) => !isLockedFeature(id));
+  const currentFeature = FEATURES.find((f) => f.id === scanableFeatures[scanIndex]);
+  const currentPhotos = featurePhotos[scanableFeatures[scanIndex]] || { a: null, b: null };
+  const canAdvance = currentPhotos.a && currentPhotos.b;
+  const scannedCount = scanableFeatures.filter((id) => featurePhotos[id]?.a && featurePhotos[id]?.b).length;
 
   const analyzeAll = async () => {
     setStep(4);
