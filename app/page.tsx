@@ -12,18 +12,18 @@ function HelixIcon({ size = 24 }: { size?: number }) {
 }
 
 const FEATURES_LIST = [
-  { img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face&auto=format", label: "Face Shape", desc: "Oval, round, square structure match" },
-  { img: "https://images.unsplash.com/photo-1509281373149-e957c6296406?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.35&auto=format", label: "Eyes", desc: "Shape, spacing, color and brow arch" },
-  { img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.45&auto=format", label: "Nose", desc: "Bridge width, tip shape and nostrils" },
-  { img: "https://images.unsplash.com/photo-1583001931096-959e9a1a6223?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.65&auto=format", label: "Smile & Lips", desc: "Lip fullness and smile width" },
-  { img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.15&auto=format", label: "Forehead", desc: "Height, hairline and width" },
-  { img: "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.75&auto=format", label: "Chin & Jaw", desc: "Jawline structure and chin projection" },
-  { img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.15&fp-y=0.45&auto=format", label: "Ears", desc: "Size, shape and attachment style" },
-  { img: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=80&h=80&fit=crop&crop=focalpoint&fp-x=0.5&fp-y=0.1&auto=format", label: "Hair", desc: "Texture, growth pattern and hairline" },
-  { img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=80&h=80&fit=crop&auto=format", label: "Skin Tone", desc: "Undertone and melanin distribution" },
-  { img: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=80&h=80&fit=crop&auto=format", label: "Hands", desc: "Finger length ratios and nail shape" },
-  { img: "https://images.unsplash.com/photo-1508387027939-27cccde53673?w=80&h=80&fit=crop&auto=format", label: "Feet", desc: "Arch type, toe length and width" },
-  { img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=80&h=80&fit=crop&auto=format", label: "Body Build", desc: "Frame size and proportional structure" },
+  { icon: "🧑", label: "Face Shape", desc: "Oval, round, square structure match" },
+  { icon: "👁️", label: "Eyes", desc: "Shape, spacing, color and brow arch" },
+  { icon: "👃", label: "Nose", desc: "Bridge width, tip shape and nostrils" },
+  { icon: "😁", label: "Smile & Lips", desc: "Lip fullness and smile width" },
+  { icon: "🧠", label: "Forehead", desc: "Height, hairline and width" },
+  { icon: "🗿", label: "Chin & Jaw", desc: "Jawline structure and chin projection" },
+  { icon: "👂", label: "Ears", desc: "Size, shape and attachment style" },
+  { icon: "💇", label: "Hair", desc: "Texture, growth pattern and hairline" },
+  { icon: "🎨", label: "Skin Tone", desc: "Undertone and melanin distribution" },
+  { icon: "🤲", label: "Hands", desc: "Finger length ratios and nail shape" },
+  { icon: "🦶", label: "Feet", desc: "Arch type, toe length and width" },
+  { icon: "🧍", label: "Body Build", desc: "Frame size and proportional structure" },
 ];
 
 const HOW_IT_WORKS = [
@@ -187,14 +187,10 @@ export default function HomePage() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
             {FEATURES_LIST.map((f, i) => (
               <div key={f.label} className={`p-3.5 rounded-xl border transition-all ${i < 2 ? "border-[#D4A853]/30 bg-[#D4A853]/[0.05]" : "border-white/[0.06] bg-white/[0.02]"}`}>
-                <div className="flex items-center justify-between mb-2.5">
-                  <div className="w-10 h-10 rounded-lg overflow-hidden border border-white/10">
-                    <img src={f.img} alt={f.label} className="w-full h-full object-cover" />
-                  </div>
-                  {i < 2
-                    ? <span className="text-[9px] bg-[#4ADE80]/15 text-[#4ADE80] px-1.5 py-0.5 rounded-full font-bold">FREE</span>
-                    : <span className="text-[9px] bg-[#D4A853]/15 text-[#D4A853] px-1.5 py-0.5 rounded-full font-bold">PREMIUM</span>
-                  }
+                <div className="flex items-center gap-2 mb-1.5">
+                  <span className="text-lg">{f.icon}</span>
+                  {i < 2 && <span className="text-[9px] bg-[#4ADE80]/15 text-[#4ADE80] px-1.5 py-0.5 rounded-full font-bold">FREE</span>}
+                  {i >= 2 && <span className="text-[9px] bg-[#D4A853]/15 text-[#D4A853] px-1.5 py-0.5 rounded-full font-bold">PREMIUM</span>}
                 </div>
                 <p className="text-sm font-semibold text-[#C8D1DA] mb-0.5">{f.label}</p>
                 <p className="text-[11px] text-[#6B7B8D] leading-relaxed">{f.desc}</p>
