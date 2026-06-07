@@ -593,7 +593,7 @@ export default function ScanPage() {
             {selectedFeatures.some(id => isLockedFeature(id)) && (
               <button onClick={() => setShowPaywall(true)}
                 className="w-full py-4 rounded-2xl border border-[#D4A853]/30 bg-[#D4A853]/[0.08] text-[#D4A853] font-bold text-sm mb-4 hover:bg-[#D4A853]/15 transition-colors">
-                🔐 Unlock {selectedFeatures.filter(id => isLockedFeature(id)).length} Hidden Scores — From $2.99
+                🔐 Unlock 10 More Features — From $2.99
               </button>
             )}
 
