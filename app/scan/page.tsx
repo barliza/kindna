@@ -204,19 +204,7 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
           </button>
         </div>
 
-        {/* Coming soon note */}
-        <div className="bg-[#D4A853]/[0.08] border border-[#D4A853]/20 rounded-xl p-3 mb-4 text-center">
-          <p className="text-xs text-[#E8C97A]">💳 Payments launching soon — join the waitlist to get notified and receive <strong>3 free premium scans</strong></p>
-        </div>
-
-        {/* Email input for waitlist */}
-        <div className="flex gap-2 mb-3">
-          <input type="email" placeholder="your@email.com"
-            className="flex-1 px-3.5 py-3 rounded-xl bg-white/[0.04] border border-white/10 text-[#E0E6ED] text-sm outline-none focus:border-[#D4A853]/50" />
-          <button className="px-4 py-3 rounded-xl bg-[#D4A853] text-[#0D1117] font-bold text-sm">
-            Join
-          </button>
-        </div>
+        
 
         <button onClick={onClose} className="w-full py-3 text-[#4A5568] text-sm">
           Continue with free results
