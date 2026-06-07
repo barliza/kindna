@@ -250,10 +250,12 @@ export default function ScanPage() {
     return false;
   });
 
-  const currentFeature = FEATURES.find((f) => f.id === selectedFeatures[scanIndex]);
-  const currentPhotos = featurePhotos[selectedFeatures[scanIndex]] || { a: null, b: null };
+  // Only scan features the user has access to
+  const scanableFeatures = selectedFeatures.filter((id) => !isLockedFeature(id));
+  const currentFeature = FEATURES.find((f) => f.id === scanableFeatures[scanIndex]);
+  const currentPhotos = featurePhotos[scanableFeatures[scanIndex]] || { a: null, b: null };
   const canAdvance = currentPhotos.a && currentPhotos.b;
-  const scannedCount = selectedFeatures.filter((id) => featurePhotos[id]?.a && featurePhotos[id]?.b).length;
+  const scannedCount = scanableFeatures.filter((id) => featurePhotos[id]?.a && featurePhotos[id]?.b).length;
 
   const setPhoto = (fId: string, person: "a" | "b", data: string) =>
     setFeaturePhotos((prev) => ({ ...prev, [fId]: { ...prev[fId], [person]: data } }));
@@ -447,9 +449,9 @@ export default function ScanPage() {
             <div className="flex items-center gap-2.5 mb-5">
               <div className="flex-1 h-1 bg-white/[0.06] rounded-full overflow-hidden">
                 <div className="h-full bg-[#D4A853] rounded-full transition-all duration-300"
-                  style={{ width: `${((scanIndex + (canAdvance ? 1 : 0.5)) / selectedFeatures.length) * 100}%` }} />
+                  style={{ width: `${((scanIndex + (canAdvance ? 1 : 0.5)) / scanableFeatures.length) * 100}%` }} />
               </div>
-              <span className="text-xs text-[#6B7B8D] flex-shrink-0">{scanIndex + 1} / {selectedFeatures.length}</span>
+              <span className="text-xs text-[#6B7B8D] flex-shrink-0">{scanIndex + 1} / {scanableFeatures.length}</span>
             </div>
             <div className="text-center mb-5">
               <span className="text-[40px]">{currentFeature.icon}</span>
@@ -470,10 +472,10 @@ export default function ScanPage() {
             </div>
             <div className="flex gap-2.5">
               <button onClick={() => scanIndex > 0 ? setScanIndex(scanIndex - 1) : setStep(1)} className={`${btnSecondary} !w-auto !px-5`}>←</button>
-              {scanIndex < selectedFeatures.length - 1 ? (
+              {scanIndex < scanableFeatures.length - 1 ? (
                 <button onClick={() => setScanIndex(scanIndex + 1)} disabled={!canAdvance}
                   className={`${btnPrimary} flex-1 ${!canAdvance ? "opacity-35 cursor-not-allowed" : ""}`}>
-                  Next: {FEATURES.find((f) => f.id === selectedFeatures[scanIndex + 1])?.label} →
+                  Next: {FEATURES.find((f) => f.id === scanableFeatures[scanIndex + 1])?.label} →
                 </button>
               ) : (
                 <button onClick={() => setStep(3)} disabled={!canAdvance}
@@ -482,7 +484,7 @@ export default function ScanPage() {
                 </button>
               )}
             </div>
-            {scanIndex < selectedFeatures.length - 1 && (
+            {scanIndex < scanableFeatures.length - 1 && (
               <button onClick={() => setScanIndex(scanIndex + 1)} className="w-full mt-2 py-2.5 text-[#4A5568] text-xs bg-transparent border-none">Skip this feature</button>
             )}
           </div>
@@ -494,7 +496,7 @@ export default function ScanPage() {
             <h2 className="font-display text-[22px] font-bold mb-1">Review Scans</h2>
             <p className="text-sm text-[#6B7B8D] mb-5">{scannedCount} of {selectedFeatures.length} features scanned</p>
             <div className="flex flex-col gap-2.5 mb-6">
-              {selectedFeatures.map((id, i) => {
+              {scanableFeatures.map((id, i) => {
                 const f = FEATURES.find((x) => x.id === id)!;
                 const photos = featurePhotos[id];
                 const ready = photos?.a && photos?.b;
@@ -520,7 +522,7 @@ export default function ScanPage() {
               })}
             </div>
             <div className="flex gap-3">
-              <button onClick={() => { setScanIndex(selectedFeatures.length - 1); setStep(2); }} className={`${btnSecondary} !w-auto !px-5`}>←</button>
+              <button onClick={() => { setScanIndex(scanableFeatures.length - 1); setStep(2); }} className={`${btnSecondary} !w-auto !px-5`}>←</button>
               <button onClick={analyzeAll} disabled={scannedCount === 0}
                 className={`${btnPrimary} flex-1 ${scannedCount === 0 ? "opacity-35 cursor-not-allowed" : ""}`}>
                 🧬 Analyze {scannedCount} Feature{scannedCount !== 1 ? "s" : ""}
