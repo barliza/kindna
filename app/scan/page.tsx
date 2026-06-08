@@ -186,7 +186,7 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
             const data = await res.json();
             if (data.url) window.location.href = data.url;
           }} className="flex-1 py-4 rounded-2xl border-2 border-[#D4A853] bg-gradient-to-b from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm">
-            <p className="text-lg font-extrabold">$2.99</p>
+            <p className="text-lg font-extrabold">$9.99</p>
             <p className="text-xs opacity-70">One-time report</p>
           </button>
           <button onClick={async () => {
@@ -199,7 +199,7 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
             if (data.url) window.location.href = data.url;
           }} className="flex-1 py-4 rounded-2xl border-2 border-[#53A8D4]/50 bg-[#53A8D4]/10 text-white font-bold text-sm relative">
             <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-[#53A8D4] text-[#0D1117] text-[10px] font-bold px-2 py-0.5 rounded-full">BEST VALUE</span>
-            <p className="text-lg font-extrabold text-[#53A8D4]">$4.99</p>
+            <p className="text-lg font-extrabold text-[#53A8D4]">$9.99</p>
             <p className="text-xs opacity-70">Monthly unlimited</p>
           </button>
         </div>
@@ -416,7 +416,7 @@ export default function ScanPage() {
               <span className="text-2xl">🔐</span>
               <div className="flex-1">
                 <p className="text-sm font-bold text-[#D4A853]">Unlock All 12 Features</p>
-                <p className="text-xs text-[#6B7B8D]">From $2.99 — Full body DNA report</p>
+                <p className="text-xs text-[#6B7B8D]">From $9.99 — Full body DNA report</p>
               </div>
               <span className="text-[#D4A853]">→</span>
             </div>
@@ -581,7 +581,7 @@ export default function ScanPage() {
             {selectedFeatures.some(id => isLockedFeature(id)) && (
               <button onClick={() => setShowPaywall(true)}
                 className="w-full py-4 rounded-2xl border border-[#D4A853]/30 bg-[#D4A853]/[0.08] text-[#D4A853] font-bold text-sm mb-4 hover:bg-[#D4A853]/15 transition-colors">
-                🔐 Unlock 10 More Features — From $2.99
+                🔐 Unlock 10 More Features — From $9.99
               </button>
             )}
 
@@ -659,3 +659,4 @@ export default function ScanPage() {
     </div>
   );
 }
+
