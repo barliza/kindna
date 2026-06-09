@@ -1,33 +1,34 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from 'next/server';
 
-export async function POST(req: NextRequest) {
+export async function POST() {
   try {
-    const { plan } = await req.json();
-
-    const response = await fetch("https://api.dodopayments.com/checkout/sessions", {
-      method: "POST",
+    const response = await fetch('https://live.dodopayments.com/checkout', {
+      method: 'POST',
       headers: {
-        "Authorization": `Bearer ${process.env.DODO_API_KEY}`,
-        "Content-Type": "application/json",
+        'Authorization': `Bearer ${process.env.DODO_API_KEY}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        product_id: process.env.DODO_PRODUCT_ID,
-        success_url: `${process.env.NEXT_PUBLIC_APP_URL}/success?plan=${plan}`,
-        cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/scan`,
-        quantity: 1,
+        product_cart: [
+          {
+            product_id: 'pdt_0NgcfaCNwsBDoQj0qCdmR',
+            quantity: 1,
+          },
+        ],
+        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
       }),
     });
 
-    const data = await response.json();
-
     if (!response.ok) {
-      console.error("Dodo error:", data);
-      return NextResponse.json({ error: data.message || "Payment failed" }, { status: 500 });
+      const error = await response.text();
+      console.error('Dodo error:', error);
+      return NextResponse.json({ error: 'Payment setup failed' }, { status: 500 });
     }
 
-    return NextResponse.json({ url: data.url });
-  } catch (error: any) {
-    console.error("Checkout error:", error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    const data = await response.json();
+    return NextResponse.json({ checkout_url: data.checkout_url });
+  } catch (err) {
+    console.error('Checkout error:', err);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

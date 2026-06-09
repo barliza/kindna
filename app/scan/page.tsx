@@ -184,7 +184,7 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
               body: JSON.stringify({ plan: "one_time" }),
             });
             const data = await res.json();
-            if (data.url) window.location.href = data.url;
+            if (data.checkout_url) window.location.href = data.checkout_url;
           }} className="flex-1 py-4 rounded-2xl border-2 border-[#D4A853] bg-gradient-to-b from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm">
             <p className="text-lg font-extrabold">$9.99</p>
             <p className="text-xs opacity-70">One-time report</p>
