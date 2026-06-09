@@ -15,7 +15,7 @@ export async function POST() {
             quantity: 1,
           },
         ],
-        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/success`,
+        return_url: `${process.env.NEXT_PUBLIC_APP_URL}/success`,
       }),
     });
 
