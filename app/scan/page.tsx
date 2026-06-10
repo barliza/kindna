@@ -5,7 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { FEATURES, RELATIONSHIPS } from "@/lib/features";
 import { FeaturePhotos, AnalysisResults, AnalyzeResponse } from "@/lib/types";
-
+import { generatePDFReport } from "@/lib/generateReport"; 
 // Free features – always unlocked
 const FREE_FEATURES = ["face", "eyes"];
 
@@ -626,7 +626,14 @@ export default function ScanPage() {
                 🔒 KinDNA is for entertainment only. Not genetic, medical, or legal evidence.
               </p>
             </div>
-
+{isPremium && (
+  <button
+    onClick={() => generatePDFReport(results, nameA, nameB, relationship)}
+    className={`${btnSecondary} mb-3`}
+  >
+    📄 Download PDF Report
+  </button>
+)}
             <button onClick={reset} className={btnPrimary}>🔄 New Comparison</button>
           </div>
         )}
