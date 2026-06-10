@@ -44,7 +44,7 @@ const FAQS = [
   { q: "Are my photos stored?", a: "No. Your photos are processed in real-time and never stored on our servers. All analysis happens in a single secure session." },
   { q: "Can it determine paternity?", a: "KinDNA provides visual resemblance scoring based on shared physical traits. It is not a DNA paternity test and cannot be used as legal proof of parentage." },
   { q: "What makes a good photo?", a: "Clear, well-lit, front-facing photos work best. Avoid sunglasses, heavy filters, or extreme angles for the most accurate results." },
-  { q: "How many features are free?", a: "Face Shape and Eyes are always free. Unlock all 12 features with a one-time $2.99 report or $4.99/month for unlimited scans." },
+  { q: "How many features are free?", a: "Face Shape and Eyes are always free. Unlock all 12 features with a one-time $9.99 report." },
 ];
 
 export default function HomePage() {
@@ -201,11 +201,12 @@ export default function HomePage() {
       </section>
 
       {/* ── PRICING ── */}
-      <section className="max-w-3xl mx-auto px-5 py-20 text-center">
+      <section className="max-w-2xl mx-auto px-5 py-20 text-center">
         <p className="text-xs text-[#D4A853] font-semibold tracking-widest uppercase mb-2">Pricing</p>
         <h2 className="font-display text-3xl font-bold mb-3">Simple, Honest Pricing</h2>
         <p className="text-[#6B7B8D] text-sm mb-10">Start free. Pay only when you want the full picture.</p>
-        <div className="grid md:grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 gap-6 max-w-xl mx-auto">
+          {/* FREE */}
           <div className="bg-white/[0.02] border border-white/[0.06] rounded-2xl p-6 text-left">
             <p className="text-xs font-bold text-[#6B7B8D] tracking-widest uppercase mb-3">Free</p>
             <p className="text-3xl font-extrabold text-white mb-1">$0</p>
@@ -214,39 +215,26 @@ export default function HomePage() {
               <li className="flex gap-2"><span className="text-[#4ADE80]">✓</span> Face Shape analysis</li>
               <li className="flex gap-2"><span className="text-[#4ADE80]">✓</span> Eyes analysis</li>
               <li className="flex gap-2"><span className="text-[#4ADE80]">✓</span> Overall match score</li>
-              <li className="flex gap-2"><span className="text-[#6B7B8D]">–</span> <span className="text-[#6B7B8D]">10 premium features</span></li>
+              <li className="flex gap-2"><span className="text-[#6B7B8D]">–</span> <span className="text-[#6B7B8D]">10 premium features locked</span></li>
             </ul>
             <Link href="/scan" className="mt-5 block w-full py-3 rounded-xl bg-white/[0.06] text-[#C8D1DA] font-semibold text-sm text-center border border-white/10">
               Start Free
             </Link>
           </div>
-          <div className="bg-[#D4A853]/[0.08] border border-[#D4A853]/30 rounded-2xl p-6 text-left">
-            <p className="text-xs font-bold text-[#D4A853] tracking-widest uppercase mb-3">One-Time Report</p>
-            <p className="text-3xl font-extrabold text-white mb-1">$2.99</p>
-            <p className="text-xs text-[#6B7B8D] mb-4">Per report</p>
+          {/* ONE-TIME */}
+          <div className="bg-[#D4A853]/[0.08] border border-[#D4A853]/30 rounded-2xl p-6 text-left relative">
+            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#D4A853] text-[#0D1117] text-[10px] font-bold px-3 py-1 rounded-full">MOST POPULAR</span>
+            <p className="text-xs font-bold text-[#D4A853] tracking-widest uppercase mb-3">Full Report</p>
+            <p className="text-3xl font-extrabold text-white mb-1">$9.99</p>
+            <p className="text-xs text-[#6B7B8D] mb-4">One-time payment</p>
             <ul className="space-y-2 text-sm text-[#C8D1DA]">
               <li className="flex gap-2"><span className="text-[#D4A853]">✓</span> Everything in Free</li>
               <li className="flex gap-2"><span className="text-[#D4A853]">✓</span> All 12 features unlocked</li>
               <li className="flex gap-2"><span className="text-[#D4A853]">✓</span> Detailed sub-scores</li>
-              <li className="flex gap-2"><span className="text-[#D4A853]">✓</span> Downloadable PDF report</li>
+              <li className="flex gap-2"><span className="text-[#D4A853]">✓</span> Full resemblance report</li>
             </ul>
             <Link href="/scan" className="mt-5 block w-full py-3 rounded-xl bg-gradient-to-r from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm text-center">
               Get Full Report
-            </Link>
-          </div>
-          <div className="bg-[#53A8D4]/[0.08] border border-[#53A8D4]/30 rounded-2xl p-6 text-left relative">
-            <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#53A8D4] text-[#0D1117] text-[10px] font-bold px-3 py-1 rounded-full">BEST VALUE</span>
-            <p className="text-xs font-bold text-[#53A8D4] tracking-widest uppercase mb-3">Unlimited</p>
-            <p className="text-3xl font-extrabold text-white mb-1">$4.99</p>
-            <p className="text-xs text-[#6B7B8D] mb-4">Per month</p>
-            <ul className="space-y-2 text-sm text-[#C8D1DA]">
-              <li className="flex gap-2"><span className="text-[#53A8D4]">✓</span> Everything in One-Time</li>
-              <li className="flex gap-2"><span className="text-[#53A8D4]">✓</span> Unlimited scans</li>
-              <li className="flex gap-2"><span className="text-[#53A8D4]">✓</span> Priority analysis</li>
-              <li className="flex gap-2"><span className="text-[#53A8D4]">✓</span> Cancel anytime</li>
-            </ul>
-            <Link href="/scan" className="mt-5 block w-full py-3 rounded-xl bg-[#53A8D4] text-[#0D1117] font-bold text-sm text-center">
-              Start Unlimited
             </Link>
           </div>
         </div>

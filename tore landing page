@@ -1,0 +1,10 @@
+[33me8d45d3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Fix pricing
+[33m6d79d7d[m Restore original page
+[33m88690e5[m Fix pricing to 9.99
+[33m621fc95[m Revert "Redirect homepage to scan"
+[33md97d675[m Redirect homepage to scan
+[33m063e733[m force redeploy
+[33me57423a[m Fix env var name
+[33md9a715e[m Fix Dodo checkout
+[33mab0b67b[m force redeploy: pricing update
+[33m7605ce1[m fix: final price update to .99
