@@ -44,7 +44,7 @@ const FAQS = [
   { q: "Are my photos stored?", a: "No. Your photos are processed in real-time and never stored on our servers. All analysis happens in a single secure session." },
   { q: "Can it determine paternity?", a: "KinDNA provides visual resemblance scoring based on shared physical traits. It is not a DNA paternity test and cannot be used as legal proof of parentage." },
   { q: "What makes a good photo?", a: "Clear, well-lit, front-facing photos work best. Avoid sunglasses, heavy filters, or extreme angles for the most accurate results." },
-  { q: "How many features are free?", a: "Face Shape and Eyes are always free. Unlock all 12 features with a one-time $2.99 report or $4.99/month for unlimited scans." },
+  { q: "How many features are free?", a: "Face Shape and Eyes are always free. Unlock all 12 features with a one-time $9.99 report or $9.99/month for unlimited scans." },
 ];
 
 export default function HomePage() {
@@ -222,7 +222,7 @@ export default function HomePage() {
           </div>
           <div className="bg-[#D4A853]/[0.08] border border-[#D4A853]/30 rounded-2xl p-6 text-left">
             <p className="text-xs font-bold text-[#D4A853] tracking-widest uppercase mb-3">One-Time Report</p>
-            <p className="text-3xl font-extrabold text-white mb-1">$2.99</p>
+            <p className="text-3xl font-extrabold text-white mb-1">$9.99</p>
             <p className="text-xs text-[#6B7B8D] mb-4">Per report</p>
             <ul className="space-y-2 text-sm text-[#C8D1DA]">
               <li className="flex gap-2"><span className="text-[#D4A853]">✓</span> Everything in Free</li>
@@ -237,7 +237,7 @@ export default function HomePage() {
           <div className="bg-[#53A8D4]/[0.08] border border-[#53A8D4]/30 rounded-2xl p-6 text-left relative">
             <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#53A8D4] text-[#0D1117] text-[10px] font-bold px-3 py-1 rounded-full">BEST VALUE</span>
             <p className="text-xs font-bold text-[#53A8D4] tracking-widest uppercase mb-3">Unlimited</p>
-            <p className="text-3xl font-extrabold text-white mb-1">$4.99</p>
+            <p className="text-3xl font-extrabold text-white mb-1">$9.99</p>
             <p className="text-xs text-[#6B7B8D] mb-4">Per month</p>
             <ul className="space-y-2 text-sm text-[#C8D1DA]">
               <li className="flex gap-2"><span className="text-[#53A8D4]">✓</span> Everything in One-Time</li>
@@ -296,3 +296,4 @@ export default function HomePage() {
     </div>
   );
 }
+
