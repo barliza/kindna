@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
     if (!response.ok) {
       console.error("Dodo error:", JSON.stringify(data));
-      return NextResponse.json({ error: data.message || "Payment failed" }, { status: 500 });
+      return NextResponse.json({ error: JSON.stringify(data)" }, { status: 500 });
     }
 
     // Dodo returns checkout_url (not url)
