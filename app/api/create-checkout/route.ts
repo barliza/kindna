@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
 
-    const response = await fetch("https://api.dodopayments.com/checkout-sessions", {
+    const response = await fetch("https://live.dodopayments.com/checkout-sessions", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${process.env.DODO_API_KEY}`,
