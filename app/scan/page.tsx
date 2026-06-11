@@ -177,15 +177,7 @@ function PaywallModal({ onClose, nameA, nameB }: { onClose: () => void; nameA: s
 
         {/* Pricing */}
         <div className="flex gap-3 mb-4">
-          <button onClick={async () => {
-            const res = await fetch("/api/create-checkout", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ plan: "one_time" }),
-            });
-            const data = await res.json();
-            if (data.checkout_url) window.location.href = data.checkout_url;
-          }} className="flex-1 py-4 rounded-2xl border-2 border-[#D4A853] bg-gradient-to-b from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm">
+          <button onClick={() => { window.location.href = "https://checkout.dodopayments.com/buy/pdt_0NgcfaCNwsBDoQj0qCdmR?quantity=1&redirect_url=https://kindna.app/success" }} className="flex-1 py-4 rounded-2xl border-2 border-[#D4A853] bg-gradient-to-b from-[#D4A853] to-[#B8862D] text-[#0D1117] font-bold text-sm">
             <p className="text-lg font-extrabold">$9.99</p>
             <p className="text-xs opacity-70">One-time report</p>
           </button>
@@ -654,3 +646,4 @@ export default function ScanPage() {
     </div>
   );
 }
+
